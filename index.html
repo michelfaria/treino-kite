@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Treino Kite Prep — 3x/semana · 30 min</title>
+<style>
+  :root{
+    --bg:#0b1520; --card:#12212f; --card2:#16283a; --line:#20374c;
+    --txt:#e8f0f7; --muted:#93a8bb; --accent:#2dd4bf; --accent2:#38bdf8;
+    --warn:#fbbf24; --chip:#1d3348;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:linear-gradient(180deg,#0b1520 0%,#0d1a28 100%); color:var(--txt); min-height:100vh; padding-bottom:60px;}
+  .wrap{max-width:820px; margin:0 auto; padding:0 16px;}
+  header{padding:34px 0 18px; text-align:center;}
+  header h1{font-size:1.55rem; letter-spacing:-.02em;}
+  header h1 span{color:var(--accent);}
+  header p{color:var(--muted); margin-top:8px; font-size:.95rem; line-height:1.5;}
+  .badges{display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:14px;}
+  .badge{background:var(--chip); border:1px solid var(--line); color:var(--txt);
+    font-size:.78rem; padding:5px 12px; border-radius:999px;}
+  nav{display:flex; gap:6px; margin:22px 0 18px; background:var(--card); border:1px solid var(--line);
+    border-radius:14px; padding:6px; position:sticky; top:8px; z-index:5;}
+  nav button{flex:1; background:transparent; border:none; color:var(--muted); font-size:.9rem; font-weight:600;
+    padding:10px 4px; border-radius:10px; cursor:pointer; transition:.15s;}
+  nav button.active{background:var(--accent); color:#06231f;}
+  nav button:hover:not(.active){color:var(--txt);}
+  .tab{display:none;} .tab.show{display:block; animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:none;}}
+  .daytitle{margin:6px 0 4px; font-size:1.2rem;}
+  .daytitle em{color:var(--accent2); font-style:normal;}
+  .daysub{color:var(--muted); font-size:.9rem; margin-bottom:16px; line-height:1.5;}
+  .block{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; margin-bottom:14px;}
+  .block h3{font-size:.8rem; text-transform:uppercase; letter-spacing:.08em; color:var(--accent);
+    margin-bottom:12px; display:flex; align-items:center; gap:8px;}
+  .block h3 .t{margin-left:auto; color:var(--muted); text-transform:none; letter-spacing:0; font-weight:500;}
+  .ex{display:flex; gap:12px; padding:11px 8px; border-radius:10px; align-items:flex-start;}
+  .ex + .ex{border-top:1px solid var(--line);}
+  .ex input{margin-top:4px; width:17px; height:17px; accent-color:var(--accent); cursor:pointer; flex-shrink:0;}
+  .ex.done .name{text-decoration:line-through; opacity:.55;}
+  .ex .name{font-weight:600; font-size:.95rem;}
+  .ex .dose{color:var(--accent2); font-size:.85rem; font-weight:600; margin-top:2px;}
+  .ex .note{color:var(--muted); font-size:.83rem; margin-top:4px; line-height:1.45;}
+  .ex .kite{color:#7ee3d4; font-size:.8rem; margin-top:4px; line-height:1.4;}
+  .ex .kite::before{content:"🪁 "; }
+  .vid{display:flex; align-items:center; gap:10px; margin-top:9px; text-decoration:none;
+    background:var(--chip); border:1px solid var(--line); border-radius:10px;
+    padding:6px 12px 6px 6px; max-width:360px; transition:.15s;}
+  .vid:hover{border-color:var(--accent); background:#22405c;}
+  .vid img{width:96px; height:54px; object-fit:cover; border-radius:6px; flex-shrink:0; background:#0b1520;}
+  .vid .vt{font-size:.8rem; color:var(--accent2); font-weight:700; line-height:1.35;}
+  .vid .vc{display:block; color:var(--muted); font-weight:400; font-size:.72rem; margin-top:2px;}
+  .tip{background:var(--card2); border-left:3px solid var(--accent); border-radius:0 10px 10px 0;
+    padding:12px 14px; font-size:.86rem; color:var(--muted); line-height:1.55; margin-bottom:14px;}
+  .tip strong{color:var(--txt);}
+  .guide h2{font-size:1.05rem; margin:22px 0 10px; color:var(--accent);}
+  .guide p, .guide li{font-size:.9rem; color:var(--muted); line-height:1.6;}
+  .guide strong{color:var(--txt);}
+  table{width:100%; border-collapse:collapse; font-size:.85rem; margin-top:8px;}
+  th,td{text-align:left; padding:9px 10px; border-bottom:1px solid var(--line);}
+  th{color:var(--accent2); font-size:.75rem; text-transform:uppercase; letter-spacing:.06em;}
+  td{color:var(--muted); line-height:1.45;} td:first-child{color:var(--txt); font-weight:600; white-space:nowrap;}
+  footer{margin-top:26px; text-align:center; color:#5b7185; font-size:.75rem; line-height:1.6;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Treino <span>Kite Prep</span></h1>
+    <p>Preparação física para o kitesurf · 3x por semana · máx. 30 minutos<br>Foco: core + lombar · mobilidade de quadril e virilha · ativação metabólica</p>
+    <div class="badges">
+      <span class="badge">⏱ 30 min por sessão</span>
+      <span class="badge">📅 Seg · Qua · Sex (ou dias alternados)</span>
+      <span class="badge">🔥 Formato circuito</span>
+      <span class="badge">▶ Toque na foto para ver o vídeo</span>
+    </div>
+  </header>
+
+  <nav>
+    <button class="active" data-tab="a">Dia A</button>
+    <button data-tab="b">Dia B</button>
+    <button data-tab="c">Dia C</button>
+    <button data-tab="g">Guia</button>
+  </nav>
+
+  <section class="tab show" id="tab-a">
+    <h2 class="daytitle">Dia A — <em>Base de força + Core estável</em></h2>
+    <p class="daysub">Padrões fundamentais (agachar, puxar, estabilizar o tronco). É a fundação do resto do programa.</p>
+
+    <div class="block">
+      <h3>Aquecimento <span class="t">~5 min</span></h3>
+      <div class="ex"><input type="checkbox"><div><div class="name">Bike ou esteira leve</div><div class="dose">2 min</div><div class="note">Ritmo confortável, só para elevar a temperatura.</div></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">Gato-camelo</div><div class="dose">8 repetições lentas</div><div class="note">Em 4 apoios, arredonde e estenda a coluna. Acorda a lombar sem carga.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=zwSYR-Kifkg" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/zwSYR-Kifkg/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Bruna Nunes · Treinamento Funcional</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">Ponte de glúteo (sem peso)</div><div class="dose">12 repetições</div><div class="note">Ativa glúteo antes do treino — glúteo forte protege lombar e virilha.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=le8ZN02BQCE" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/le8ZN02BQCE/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Hora do Treino</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">Maior alongamento do mundo</div><div class="dose">4 por lado</div><div class="note">Afundo profundo + rotação de tronco. Abre quadril e virilha em movimento.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=LGD7-2gMUTs" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/LGD7-2gMUTs/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Fabiano Antunes</span></span></a></div></div>
+    </div>
+
+    <div class="block">
+      <h3>Circuito principal — 3 voltas <span class="t">~18 min · descanse 60–90s entre voltas</span></h3>
+      <div class="ex"><input type="checkbox"><div><div class="name">1. Agachamento taça (goblet squat)</div><div class="dose">10–12 reps · halter ou kettlebell no peito</div><div class="note">Desça até onde conseguir manter o calcanhar no chão e as costas neutras. Peso que deixe as últimas 2 reps difíceis.</div><div class="kite">Base das pernas para absorver o chop e aguentar a prancha na água.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=Nx3czyxDjVY" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/Nx3czyxDjVY/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Pedro Almeida · Mentor Fitness</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">2. Remada curvada com halteres</div><div class="dose">10–12 reps</div><div class="note">Tronco inclinado ~45°, costas retas. Puxe o cotovelo em direção ao bolso.</div><div class="kite">Fortalece a "cadeia de puxar" e ensina a lombar a segurar posição inclinada — igual quando o kite te puxa.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=aEk2KG_DmOk" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/aEk2KG_DmOk/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Treino Mestre</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">3. Dead bug</div><div class="dose">8 por lado, bem lento</div><div class="note">Deitado, lombar colada no chão o tempo todo. Estenda braço e perna opostos.</div><div class="kite">Core anti-extensão: é o que impede a lombar de "abrir" quando o trapézio puxa você para cima.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=0loS0bRNqfs" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/0loS0bRNqfs/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Sarah Castro</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">4. Prancha frontal</div><div class="dose">20–40s (o que aguentar com boa forma)</div><div class="note">Glúteo e abdômen contraídos, corpo em linha reta. Se tremer a lombar, apoie os joelhos.</div><div class="kite">Rigidez de tronco = transmitir a força do kite para a prancha sem se machucar.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=OnVIGDpnMow" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/OnVIGDpnMow/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">FISIculturismo.com.br</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">5. Elevação pélvica com peso (hip thrust)</div><div class="dose">12–15 reps · costas no banco, anilha ou halter no quadril</div><div class="note">Suba até o quadril estender totalmente, aperte o glúteo 1s no topo.</div><div class="kite">Glúteos fortes tiram carga da lombar e dos adutores — ataca direto a causa da sua dor na virilha.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=nwkXOSKGnQQ" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/nwkXOSKGnQQ/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Smart Fit</span></span></a></div></div>
+    </div>
+
+    <div class="block">
+      <h3>Alongamento final <span class="t">~5 min · segure 30–45s cada</span></h3>
+      <div class="ex"><input type="checkbox"><div><div class="name">Posterior de coxa com faixa/toalha</div><div class="dose">40s por perna</div><div class="note">Deitado, perna esticada para cima, puxe com a faixa até sentir alongar (sem dor).</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=KLRh02x1br8" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/KLRh02x1br8/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Fisic Academia</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">Borboleta (adutores)</div><div class="dose">45s</div><div class="note">Sentado, solas dos pés unidas, deixe os joelhos caírem com o peso da gravidade.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=VFd1fO_H7do" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/VFd1fO_H7do/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Matheus Personal Nutri</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">Flexor de quadril ajoelhado</div><div class="dose">30s por lado</div><div class="note">Afundo com joelho no chão, aperte o glúteo e leve o quadril à frente.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=efCi4JAMBkU" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/efCi4JAMBkU/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Cloud Gym</span></span></a></div></div>
+    </div>
+  </section>
+
+  <section class="tab" id="tab-b">
+    <h2 class="daytitle">Dia B — <em>Metabólico + Core anti-rotação</em></h2>
+    <p class="daysub">Dia de queimar: ritmo mais alto, menos descanso. Frequência cardíaca sobe e o metabolismo fica acelerado por horas depois.</p>
+
+    <div class="block">
+      <h3>Aquecimento <span class="t">~4 min</span></h3>
+      <div class="ex"><input type="checkbox"><div><div class="name">Bike moderada</div><div class="dose">2 min</div></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">Balanço de perna (frente/trás e lateral)</div><div class="dose">10 por perna, cada direção</div><div class="note">Segure em algo. O balanço lateral aquece exatamente os adutores da virilha.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=wF10oYsLUw0" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/wF10oYsLUw0/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Hailey Happens Fitness (inglês)</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">Agachamento sem peso</div><div class="dose">10 reps</div></div></div>
+    </div>
+
+    <div class="block">
+      <h3>Circuito principal — 3 voltas <span class="t">~18 min · descanse o mínimo entre exercícios, 60s entre voltas</span></h3>
+      <div class="ex"><input type="checkbox"><div><div class="name">1. Kettlebell swing</div><div class="dose">12–15 reps · comece leve (8–12 kg)</div><div class="note">O movimento é dobradiça de quadril, não agachamento: quadril vai atrás, o KB sobe pelo impulso do quadril, não dos braços. Se a academia não tiver KB, faça levantamento terra romeno leve e rápido com halter.</div><div class="kite">Potência de quadril + posterior de coxa forte no padrão certo — é o exercício mais "kite" do programa.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=MB87gQFA_y0" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/MB87gQFA_y0/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Iridium Labs · Tutorial do Hamoy</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">2. Pallof press (na polia ou elástico)</div><div class="dose">10 por lado, segurando 2s à frente</div><div class="note">De lado para a polia, empurre o cabo à frente do peito e resista à rotação.</div><div class="kite">Anti-rotação pura: o kite puxa de um lado e o tronco tem que ficar firme. É isso aqui.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=Wez6pSiwfJg" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/Wez6pSiwfJg/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">CT Powerfit</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">3. Afundo reverso (passada para trás)</div><div class="dose">8 por perna · sem peso ou halteres leves</div><div class="note">Passo para trás é mais gentil com joelho e virilha do que para frente. Tronco ereto.</div><div class="kite">Força unilateral de perna — na prancha, cada perna trabalha diferente (dianteira x traseira).</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=p6S75W3TkDA" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/p6S75W3TkDA/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Equipe Fun Sports</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">4. Puxada alta na polia (pulley)</div><div class="dose">10–12 reps</div><div class="note">Puxe a barra ao peito, peito aberto, sem balançar o tronco.</div><div class="kite">Dorsais e antebraço para bodydrag, waterstart e segurar a barra em sessões longas.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=BOW9my4J_ek" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/BOW9my4J_ek/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Treino Mestre</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">5. Prancha lateral</div><div class="dose">15–30s por lado</div><div class="note">Cotovelo sob o ombro, quadril alto. Se preciso, joelhos apoiados.</div><div class="kite">Trabalha oblíquos E adutores/quadril lateral — proteção direta para a virilha.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=2NjO5KrlVEM" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/2NjO5KrlVEM/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Rodrigo Zago Treinador</span></span></a></div></div>
+    </div>
+
+    <div class="block">
+      <h3>Finalizador metabólico <span class="t">~3 min</span></h3>
+      <div class="ex"><input type="checkbox"><div><div class="name">Caminhada do fazendeiro (farmer carry)</div><div class="dose">2 × 30–40 metros · halteres pesados, um em cada mão</div><div class="note">Ande ereto, passos curtos, abdômen firme. Descanse 45s entre as voltas.</div><div class="kite">Pegada de ferro + core sob carga andando. Simples e devastador para o metabolismo.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=xb1GMZacM8w" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/xb1GMZacM8w/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Bruna Nunes · Treinamento Funcional</span></span></a></div></div>
+    </div>
+
+    <div class="block">
+      <h3>Alongamento final <span class="t">~4 min</span></h3>
+      <div class="ex"><input type="checkbox"><div><div class="name">Adutor ajoelhado (rock-back)</div><div class="dose">10 idas lentas por lado</div><div class="note">Em 4 apoios, uma perna esticada para o lado; leve o quadril para trás até sentir a virilha alongar.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=FkxBaLFrlSE" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/FkxBaLFrlSE/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Perform 360 (inglês)</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">Piriforme (figura 4 deitado)</div><div class="dose">30s por lado</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=AYKYKmTsv0w" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/AYKYKmTsv0w/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Escoliose Brasil · Rodrigo Andrade</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">Posterior de coxa em pé</div><div class="dose">30s por perna</div><div class="note">Pé no banco baixo, perna quase esticada, incline o tronco com as costas retas.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=XLqB7-XL65E" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/XLqB7-XL65E/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Volpert Gym</span></span></a></div></div>
+    </div>
+  </section>
+
+  <section class="tab" id="tab-c">
+    <h2 class="daytitle">Dia C — <em>Posterior, lombar e blindagem da virilha</em></h2>
+    <p class="daysub">O dia mais importante para o seu caso: fortalece posterior de coxa e adutores no alongamento e termina com a maior sessão de mobilidade da semana.</p>
+
+    <div class="block">
+      <h3>Aquecimento <span class="t">~4 min</span></h3>
+      <div class="ex"><input type="checkbox"><div><div class="name">Bike leve</div><div class="dose">2 min</div></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">Agachamento cossaco (parcial)</div><div class="dose">5 por lado, só até onde for confortável</div><div class="note">Pernas bem afastadas, desça para um lado de cada vez. Amplitude aumenta com as semanas.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=hQ-AqY_BEmk" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/hQ-AqY_BEmk/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Emy Oliveira</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">90/90 de quadril</div><div class="dose">5 trocas lentas por lado</div><div class="note">Sentado no chão, pernas em "Z"; gire os joelhos de um lado para o outro.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=i8Y_v2AWqKc" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/i8Y_v2AWqKc/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Emy Oliveira</span></span></a></div></div>
+    </div>
+
+    <div class="block">
+      <h3>Circuito principal — 3 voltas <span class="t">~17 min · descanse 60–90s entre voltas</span></h3>
+      <div class="ex"><input type="checkbox"><div><div class="name">1. Stiff romeno com halteres (RDL)</div><div class="dose">10 reps · peso leve/moderado</div><div class="note">Joelhos semiflexionados, desça os halteres pela coxa empurrando o quadril para trás. Pare quando o posterior "puxar". Costas SEMPRE neutras.</div><div class="kite">Fortalece o posterior de coxa alongando — o antídoto para o encurtamento que está travando sua virilha.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=cETLf4xXYCQ" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/cETLf4xXYCQ/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Miqueias Alves Personal</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">2. Agachamento sumô com halter</div><div class="dose">10–12 reps · pés bem afastados, pontas para fora</div><div class="note">Segure o halter pendurado entre as pernas. Joelhos seguem a direção dos pés.</div><div class="kite">Trabalha os adutores como motores, não só como freio — virilha forte reclama menos.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=ED9NUglcBrs" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/ED9NUglcBrs/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Miqueias Alves Personal</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">3. Prancha de Copenhague (versão curta)</div><div class="dose">10–20s por lado · joelho de cima apoiado no banco</div><div class="note">Deitado de lado, joelho da perna de cima sobre o banco, eleve o quadril. É O exercício com mais evidência para prevenir dor na virilha. Comece conservador; se doer, diminua o tempo.</div><div class="kite">Blindagem direta dos adutores. Atletas que fazem isso têm ~40% menos lesões de virilha.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=bU8aazv5voo" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/bU8aazv5voo/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Runna (inglês) · versão iniciante</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">4. Bird dog</div><div class="dose">8 por lado, pausa de 2s esticado</div><div class="note">Em 4 apoios, estenda braço e perna opostos sem girar o quadril.</div><div class="kite">Estabilidade lombar clássica — coordenação de core que se transfere para a prancha.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=ZdAHe9_HeEw" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/ZdAHe9_HeEw/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">NASM (inglês)</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">5. Extensão lombar no banco romano</div><div class="dose">10–12 reps, sem peso</div><div class="note">Suba só até o corpo ficar em linha reta (não hiperestenda). Sem banco romano: faça "superman" no colchonete segurando 3s.</div><div class="kite">Resistência dos eretores da lombar para aguentar horas de trapézio sem dor no dia seguinte.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=6Bg5woPBEA8" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/6Bg5woPBEA8/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Dan Champions</span></span></a></div></div>
+    </div>
+
+    <div class="block">
+      <h3>Mobilidade final — a parte que resolve a virilha <span class="t">~7 min · não pule!</span></h3>
+      <div class="ex"><input type="checkbox"><div><div class="name">Posterior de coxa com faixa</div><div class="dose">2 × 40s por perna</div><div class="note">A prioridade nº 1. Alongue até tensão firme, nunca dor aguda. Respire fundo e deixe ceder.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=KLRh02x1br8" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/KLRh02x1br8/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Fisic Academia</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">Sapo (frog stretch)</div><div class="dose">60s</div><div class="note">Em 4 apoios com joelhos bem afastados, leve o quadril para trás. Alongamento profundo de adutores.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=X1xuLlDjh24" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/X1xuLlDjh24/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Miqueias Alves Personal</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">Flexor de quadril + alcance</div><div class="dose">30s por lado</div><div class="note">Afundo ajoelhado, braço do mesmo lado esticado para cima e levemente para o lado oposto.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=efCi4JAMBkU" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/efCi4JAMBkU/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Cloud Gym</span></span></a></div></div>
+      <div class="ex"><input type="checkbox"><div><div class="name">Torção deitada</div><div class="dose">30s por lado</div><div class="note">Deitado, joelho cruzado sobre o corpo, ombros no chão. Relaxa a lombar para fechar.</div>
+        <a class="vid" href="https://www.youtube.com/watch?v=MBDvGCm2ipo" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/MBDvGCm2ipo/mqdefault.jpg" alt="" onerror="this.style.display='none'"><span class="vt">▶ Ver vídeo<span class="vc">Prof. Matheus Gomes</span></span></a></div></div>
+    </div>
+  </section>
+
+  <section class="tab guide" id="tab-g">
+    <h2 style="margin-top:6px;">Como usar este programa</h2>
+    <p>Treine em <strong>dias alternados</strong> (ex.: segunda A, quarta B, sexta C) — o corpo de quem está saindo do sedentarismo precisa das 48h de recuperação. Se for velejar no fim de semana, o kite conta como treino: não compense na academia. Cada exercício tem uma foto que leva ao vídeo demonstrativo no YouTube — assista antes da primeira execução de cada um.</p>
+
+    <h2>Progressão (12 semanas)</h2>
+    <table>
+      <tr><th>Fase</th><th>Semanas</th><th>O que fazer</th></tr>
+      <tr><td>Adaptação</td><td>1–2</td><td>Apenas 2 voltas do circuito, pesos leves. A meta é aprender a técnica perfeita, não suar. Espere dor muscular — é normal.</td></tr>
+      <tr><td>Construção</td><td>3–6</td><td>3 voltas completas. Aumente o peso quando as últimas 2 repetições ficarem fáceis (regra: se completou todas as reps com folga em 2 treinos seguidos, suba o peso).</td></tr>
+      <tr><td>Intensificação</td><td>7–12</td><td>Mantenha 3 voltas e encurte os descansos (90s → 60s → 45s), ou adicione carga. No Dia B, o swing pode subir para 16 kg. Copenhague: aumente o tempo até 30s.</td></tr>
+    </table>
+
+    <h2>Sobre a dor na virilha</h2>
+    <p>Seu diagnóstico provável (encurtamento de posterior + adutores fracos para a demanda do kite) é o padrão mais comum em iniciantes. O programa ataca pelos dois lados: <strong>alongamento diário do posterior</strong> (os finais de treino + se puder, 2 min em casa nos dias sem academia) e <strong>fortalecimento dos adutores</strong> (Copenhague, sumô, prancha lateral). Regra de ouro: desconforto até 3/10 durante o exercício é aceitável; acima disso, reduza amplitude ou carga. Se a dor na virilha persistir após 4–6 semanas de treino consistente, ou se doer em repouso, procure um fisioterapeuta do esporte — pode haver algo além de encurtamento, e vale confirmar. (Lembrando: este material foi elaborado com IA e não substitui avaliação profissional.)</p>
+
+    <h2>Sobre a queima de gordura abdominal</h2>
+    <p>O formato circuito com pouco descanso maximiza o gasto calórico em 30 minutos e gera efeito metabólico pós-treino (EPOC). Mas seja realista: <strong>não existe queima localizada</strong> — a barriga seca quando o corpo inteiro entra em déficit calórico. O treino é o acelerador; a alimentação é o volante. Três alavancas simples que multiplicam o resultado: proteína em todas as refeições (~1,6 g/kg/dia), cortar bebidas calóricas e líquidas as calorias, e caminhar mais nos dias sem treino (8–10 mil passos). Com isso + este treino, a mudança na cintura aparece em 8–12 semanas.</p>
+
+    <h2>Por que este treino serve para o kite</h2>
+    <p>Cada exercício foi escolhido pela transferência: o trapézio puxa você pelo quadril, então <strong>core anti-extensão e anti-rotação</strong> (dead bug, pallof, pranchas) é o que evita dor lombar depois de horas na água. A posição na prancha exige <strong>quadril móvel e adutores resistentes</strong> (cossaco, sumô, Copenhague, sapo). O waterstart e o controle de barra pedem <strong>dobradiça de quadril potente e pegada</strong> (swing, RDL, remadas, farmer carry). Em 8–12 semanas você vai sentir diferença clara nas sessões de downwind.</p>
+
+    <h2>Checklist rápido de segurança</h2>
+    <ul style="padding-left:20px; margin-top:6px;">
+      <li>Assista ao vídeo de cada exercício antes da primeira vez que for executá-lo.</li>
+      <li>Aquecimento nunca é opcional — principalmente o balanço lateral de pernas antes de carga.</li>
+      <li>Técnica &gt; peso, sempre. Filmar-se com o celular ajuda muito no começo.</li>
+      <li>Dor articular aguda (pontada) = pare o exercício e substitua no dia.</li>
+      <li>Sedentário há muito tempo + 36 anos: se tiver qualquer condição cardíaca ou pressão alta, faça uma avaliação médica antes de intensificar (fase 3).</li>
+    </ul>
+  </section>
+
+  <footer>Programa de preparação física para kitesurf · 3x/semana · 30 min · Projeto Kite Surf<br>Elaborado com Claude · Julho 2026 · Vídeos: canais públicos do YouTube · Não substitui avaliação de educador físico ou médico</footer>
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('nav button');
+  tabs.forEach(btn => btn.addEventListener('click', () => {
+    tabs.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('show'));
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('show');
+    window.scrollTo({top:0, behavior:'smooth'});
+  }));
+  document.querySelectorAll('.ex input').forEach(cb => cb.addEventListener('change', () => {
+    cb.closest('.ex').classList.toggle('done', cb.checked);
+  }));
+</script>
+</body>
+</html>
