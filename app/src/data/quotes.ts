@@ -1,6 +1,7 @@
 import type { ProfileId } from '../types'
 
 // Banco local de frases — tom: parceiro de treino, sem culpa, sem body-shaming.
+// 60 por perfil: com uma frase por dia, nenhuma repete antes de 60 dias (spec §F2).
 const MICHEL: string[] = [
   'Dia de treino é dia de vento a favor. 30 minutos e pronto. 🪁',
   'Cada dead bug de hoje é uma rasgada mais firme no downwind.',
@@ -32,6 +33,36 @@ const MICHEL: string[] = [
   'Corpo preparado transforma medo de manobra em vontade.',
   'A sequência que importa não é a do app — é a sua na água.',
   'Bom vento começa com bom treino. Simples assim.',
+  'Nem todo dia tem vento. Todo dia tem 30 minutos.',
+  'Técnica antes de peso, sempre. O corpo cobra a conta na água.',
+  'Hoje você treina contra a gravidade. Sábado, a favor do vento.',
+  'Respira fundo no alongamento — é ali que a virilha solta.',
+  'O corpo aprende devagar e esquece rápido. Volta hoje.',
+  'Quadril móvel, prancha obediente.',
+  'Ninguém vê seu treino de terça. Todo mundo vê sua sessão de sábado.',
+  'Cansado é diferente de lesionado. Se for só cansaço, começa o aquecimento.',
+  'A ilha está cheia de trilha. Hoje o trabalho é aqui dentro mesmo.',
+  'Pegada firme não se compra: se treina.',
+  'Um dia difícil de treino vale mais que uma semana de planejamento.',
+  'Equilíbrio começa no tornozelo e termina no core.',
+  'A lombar dos seus 50 anos está sendo construída agora.',
+  'Sem pressa: amplitude boa vale mais que repetição rápida.',
+  'Se o vento não vier hoje, o treino vem.',
+  'Adutor forte é silencioso. É exatamente por isso que você treina ele.',
+  'Levanta, aquece, começa. O resto o corpo resolve.',
+  'Kite pede potência curta e resistência longa — hoje cobre as duas.',
+  'Progresso não é linear, mas é teimoso. Continua.',
+  'Dois quilos a mais no halter, meses a mais na água.',
+  'Bird dog parece bobo até a lombar agradecer.',
+  'Mobilidade hoje é liberdade de movimento amanhã.',
+  'Aos 36 o corpo ainda responde rápido. Só precisa do estímulo.',
+  'Não é sobre estar em forma. É sobre estar pronto quando o vento entrar.',
+  'Registrar o treino que não rolou também é honestidade. Sem culpa.',
+  'A melhor prancha é a que o corpo aguenta por horas.',
+  'Alonga o posterior mesmo nos dias sem treino. São dois minutos.',
+  'Nordeste ou sudoeste: corpo preparado veleja nos dois.',
+  'Você não está começando do zero. Está começando de novo.',
+  'Meia hora agora. Sorriso bobo no downwind depois.',
 ]
 
 const GABRIELLA: string[] = [
@@ -65,11 +96,41 @@ const GABRIELLA: string[] = [
   'Fica forte no seu ritmo. O app só anota, quem faz é você.',
   'Treinar em casa é superpoder: zero deslocamento, 100% resultado.',
   'Sua sequência não quebra por um dia difícil. Ela cresce com os dias feitos.',
+  'Começa pelo aquecimento. Só isso. O resto vem junto.',
+  'Peso que desafia, técnica que protege.',
+  'O corpo que te leva pra trilha é o mesmo que você treina hoje.',
+  'Um minuto de descanso é descanso — não é rolar o feed. 😄',
+  'Você já fez isso antes. Faz de novo.',
+  'Força hoje é autonomia daqui a vinte anos.',
+  'Treino curto feito ganha de treino longo adiado.',
+  'Respira na subida, controla na descida.',
+  'Não compare sua primeira série com a terceira de ninguém.',
+  'O halter não sabe que dia é hoje. Só sabe se você apareceu.',
+  'Glúteo forte, joelho tranquilo, lombar em paz.',
+  'Tem dia que treino é terapia. Hoje pode ser um desses.',
+  'Sua meta não é cansar. É ficar mais forte.',
+  'Se ficou fácil, você subiu de nível — hora de subir o peso.',
+  'A praia está aí. Corpo pronto aproveita mais.',
+  'Postura boa no treino vira postura boa no dia inteiro.',
+  'Ninguém precisa ver. Você vai sentir.',
+  'Uma série a menos ainda é treino. Nenhuma é que não é.',
+  'O progresso mora nas semanas, não nos dias.',
+  'Prancha de 30 segundos: você aguenta. É só respirar.',
+  'Treinar é fácil de cumprir e fácil de adiar. Hoje, cumpre.',
+  'Halteres no chão, música alta, 45 minutos que são seus.',
+  'Corpo forte carrega compras, mochila, criança e vida.',
+  'Uma repetição bem feita vale por três apressadas.',
+  'Dia de perna hoje. Amanhã a escada reclama — e isso é bom sinal.',
+  'Você não precisa de motivação todo dia. Precisa de rotina.',
+  'Começa leve. Termina orgulhosa.',
+  'O treino que você faz com sono ainda conta.',
+  'Água por perto, celular longe, 45 minutos pela frente.',
+  'Constância venceu talento tantas vezes que virou regra.',
 ]
 
 const BANK: Record<ProfileId, string[]> = { michel: MICHEL, gabriella: GABRIELLA }
 
-/** Frase do dia — determinística por data, sem repetir dentro de 30 dias. */
+/** Frase do dia — determinística por data; o ciclo completo leva 60 dias. */
 export function quoteOfTheDay(profileId: ProfileId, dateISO: string): string {
   const bank = BANK[profileId]
   const day = Math.floor(new Date(dateISO + 'T12:00:00').getTime() / 86400000)

@@ -31,7 +31,7 @@ Decisões herdadas: Dexie + `useLiveQuery` (UI reativa ao banco), sessão-snapsh
 
 **Funciona hoje (testado no navegador):**
 - Onboarding com seletor de perfil (2 perfis seed)
-- **Hoje**: saudação, frase do dia (banco local, 30/perfil, determinística sem repetição em 30 dias), streak 🔥, treino sugerido com rotação automática (A→B→C / 1→…→5), retomada de sessão em andamento
+- **Hoje**: saudação, frase do dia (banco local, 60/perfil, determinística — só repete após 60 dias), streak 🔥, treino sugerido com rotação automática (A→B→C / 1→…→5), retomada de sessão em andamento
 - **Player**: checklist por seção, timer de descanso automático (60s, +30s/90s, beep+vibração), carga em kg com última carga de referência, vídeos do YouTube (thumbnail com fallback), barra de progresso gradiente, fechamento com status automático (`done` ≥80% · `partial` · `skipped`), emoji "como se sentiu", contexto e painFlag da virilha (Michel)
 - **Treinos**: biblioteca dos 8 templates, detalhe com vídeos, **edição de doses** persistente
 - **Evolução**: 5 cards — aderência (12 semanas + % do mês), sequência (atual + recorde + micro-calendário 4 semanas), cargas (chips por exercício + sparkline + Δ%), corpo (6 medidas com registro manual + sparkline), bem-estar (média semanal + gráfico de painFlag com alerta de fisioterapeuta em 2+/semana)
@@ -46,7 +46,7 @@ Decisões herdadas: Dexie + `useLiveQuery` (UI reativa ao banco), sessão-snapsh
 | Item | Fase | Nota |
 |---|---|---|
 | Push com app fechado | 2 | Exige cron serverless (Cloudflare Worker + KV) — spec §7. UI de lembretes e permissão já prontas |
-| Banco de ≥60 frases/perfil | 2 | Hoje 30/perfil; expandir é só conteúdo em `src/data/quotes.ts` |
+| ~~Banco de ≥60 frases/perfil~~ | ✅ 2 | **Feito:** 60 por perfil em `src/data/quotes.ts`; rotação verificada — 60 frases distintas em 60 dias, sem repetir dentro de 30 |
 | Reordenar exercícios do template | v1.1 | Edição de dose entregue; reordenação adia |
 | IA (frases, resumo semanal, coach) | 3 | Toggle e opt-in prontos; falta o proxy Worker (spec §9) |
 | Backup em Gist | 3 | Export/import manual entregue |
