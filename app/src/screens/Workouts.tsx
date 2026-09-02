@@ -65,7 +65,7 @@ function WorkoutDetail({ t, onBack, onStart }: { t: WorkoutTemplate; onBack: () 
       <div className="stack">
         {t.sections.map((sec) => (
           <Card key={sec.title} style={{ padding: '14px 16px' }}>
-            <div className="row" style={{ marginBottom: 4 }}>
+            <div className="sec-head" style={{ marginBottom: 4 }}>
               <span className="eyebrow" style={{ color: 'var(--accent)' }}>{sec.title}</span>
               {sec.note && <span style={{ color: 'var(--muted)', fontSize: '0.72rem' }}>{sec.note}</span>}
             </div>

@@ -121,7 +121,7 @@ export function Settings({ profile, onSwitchProfile }: { profile: Profile; onSwi
         <Card>
           <h2 className="eyebrow" style={{ marginBottom: 12 }}>Backup</h2>
           <div style={{ display: 'flex', gap: 10 }}>
-            <button className="btn" style={{ flex: 1 }} onClick={doExport}>Exportar JSON</button>
+            <button className="btn" style={{ flex: 1, whiteSpace: 'nowrap' }} onClick={doExport}>Exportar</button>
             <button className="btn" style={{ flex: 1 }} onClick={() => fileRef.current?.click()}>Importar</button>
             <input
               ref={fileRef}
