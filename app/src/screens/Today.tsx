@@ -64,14 +64,12 @@ export function Today({
       {active && (
         <Card style={{ marginBottom: 14, borderColor: 'var(--accent)' }}>
           <p className="eyebrow" style={{ color: 'var(--accent)' }}>Treino em andamento</p>
-          <div className="row" style={{ marginTop: 8 }}>
-            <div style={{ fontWeight: 800, fontSize: '1.05rem' }}>
-              {active.templateTitle}
-            </div>
-            <button className="btn primary" onClick={() => onResume(active)}>
-              Continuar
-            </button>
+          <div style={{ fontWeight: 800, fontSize: '1.05rem', margin: '8px 0 14px' }}>
+            {active.templateTitle}
           </div>
+          <button className="btn primary full" onClick={() => onResume(active)}>
+            Continuar
+          </button>
         </Card>
       )}
 

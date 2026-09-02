@@ -71,7 +71,9 @@ a { color: var(--accent-2); }
 .screen {
   max-width: 560px;
   margin: 0 auto;
-  padding: 18px 18px calc(var(--tabbar-h) + 34px);
+  /* topo: no iOS instalado (status bar translúcida) o conteúdo passaria sob o notch */
+  padding: calc(18px + env(safe-area-inset-top)) calc(18px + env(safe-area-inset-right))
+    calc(var(--tabbar-h) + 34px) calc(18px + env(safe-area-inset-left));
   animation: rise 0.25s ease;
 }
 @keyframes rise { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; } }

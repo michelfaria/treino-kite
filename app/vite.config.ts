@@ -12,7 +12,7 @@ export default defineConfig({
       includeAssets: ['icon.svg', 'apple-touch-icon.png'],
       manifest: {
         name: 'Vento a Favor — Treino em Casa',
-        short_name: 'Vento a Favor',
+        short_name: 'Vento',
         description: 'Treinos em casa e ao ar livre, com histórico e evolução. Ilhabela edition.',
         lang: 'pt-BR',
         display: 'standalone',
