@@ -1,0 +1,57 @@
+name: Deploy site + PWA
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# um deploy por vez; não cancela um deploy em andamento
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - name: Instalar dependências
+        working-directory: app
+        run: npm ci
+
+      - name: Build do PWA
+        working-directory: app
+        run: npm run build
+
+      - name: Montar o site
+        run: |
+          mkdir -p _site
+          cp index.html gabriella.html _site/
+          cp -R app/dist _site/app
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
