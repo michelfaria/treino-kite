@@ -40,7 +40,13 @@ src/
 - Status da sessão: `done` ≥80% dos exercícios · `partial` 1–79% · `skipped` 0%
 - Temas por perfil via `[data-theme]`; a marca (linha d'água verde→azul) é fixa
 
-## Deploy (GitHub Pages)
+## Deploy — automático
 
-`npm run build` e copie `dist/` para a pasta `app/` do repositório `treino-kite`.
-As páginas estáticas atuais continuam no ar como fallback.
+Qualquer push na `main` publica sozinho, via `.github/workflows/deploy.yml`:
+o Actions instala, roda `npm run build` e monta o site (páginas estáticas na raiz + este app em `/app/`).
+
+- App: https://michelfaria.github.io/treino-kite/app/
+- Páginas antigas: https://michelfaria.github.io/treino-kite/ e `/gabriella.html`
+
+O build (`dist/`) **não** vai para o repositório — quem compila é o Actions.
+Para republicar sem alterar código: aba Actions → *Deploy site + PWA* → *Run workflow*.
